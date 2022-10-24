@@ -36,7 +36,7 @@ const atualizarHospede = async(req,res)=>{
     const {idHotel} = req.params;
     const {numeroReserva,apartamento,dataCheckin,dataCheckout,status} = req.body;
     try {
-    await schemaHospede.validate(req.bdy);
+    await schemaHospede.validate(req.body);
     const verificarReserva = await knex('tb_reserva').where({numeroReserva}).first();
     if(!verificarReserva){
       return res.status(404).json("Já existe uma reserva com esse número");

@@ -37,12 +37,12 @@ const atualizarHospede = async(req,res)=>{
     const {numeroReserva,apartamento,dataCheckin,dataCheckout,status} = req.body;
      
     try {
-    await schemaHospede.validate(req.body);
+      await schemaHospede.validate(req.body);
     const verificarReserva = await knex('tb_reserva').where({numeroReserva}).first();
     if(!verificarReserva){
       return res.status(404).json("Já existe uma reserva com esse número");
    }
-   const atualizar = await knex('tb_hotel').where({idHotel}).join('tb_reserva').select("nome","sobrenone")update(numeroReserva,apartamento,dataCheckin,dataCheckout,status);
+   const atualizar = await knex('tb_hotel').where({idHotel}).join('tb_reserva').select("nome","sobrenone").update(numeroReserva,apartamento,dataCheckin,dataCheckout,status);
    if(!atualizar){
         return res.status(400).json("Não foi possível atualizar o hospede")
    }

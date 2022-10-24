@@ -1,28 +1,31 @@
 CREATE DATABASE hotelaria;
 
- CREATE TABLE IF NOT EXISTS tb_hotel(
-id SERIAL PRIMARY KEY,
-nome VARCHAR(50) NOT NULL,
+drop table if  exists tb_reservas;
+
+
+create table tb_hotel (
+ID SERIAL PRIMARY KEY,
+nome text not null,
 cnpj INTEGER NOT NULL,
-pais TEXT (50) NOT NULL,
-estado TEXT (50) NOT NULL,
-cidade TEXT (50) NOT NULL,
+pais text NOT NULL,
+estado text not null,
+cidade text not null
+)
 
- );
+drop table if exists tb_reservas;
 
-
-CREATE TABLE IF NOT EXISTS tb_reservas(
-idHotel SERIAL PRIMARY KEY
-numeroReserva INTEGER NOT NULL,
+create table tb_reservas (
+idHotel SERIAL PRIMARY KEY,
+numeroreserva integer not null,
 dataCheckin TIMESTAMP,
 dataCheckout TIMESTAMP,
 status INT NOT NULL
 )
 
+drop table if exists tb_hospedes;
 
-
-CREATE  TABLE  IF NOT EXISTS tb_hospedes(
-idHospede SERIAL PRIMARY KEY
-nome VARCHAR(50) NOT NULL,
-sobrenome VARCHAR(50) NOT NULL
+create table tb_hospedes (
+  id serial primary key,
+  nome text not null,
+  sobrenone text not null
 )
